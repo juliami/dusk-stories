@@ -35,7 +35,7 @@ export async function generateMetadata(
 }
 
 
-export default async function StoryPage({ params }: { params: { slug: string } }) {
+export default async function StoryPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug} = await params;
     const story = await getStoryBySlug(slug);
 
