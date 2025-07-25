@@ -1,0 +1,11 @@
+{
+  "spaceId": "z2k553z43nlk",
+  "environmentId": "master",
+  "exportDir": "./contentful/exports",
+  "contentFile": "contentTypes.json",
+  "skipRoles": "true",
+  "skipContent": "true",
+  "skipWebhooks": "true",
+  "skipTags": "true",
+  "skipEditorInterfaces": "true"
+}
