@@ -14,10 +14,13 @@ function getFirstSentences(text: string, count: number = 2): string {
   return sentences.slice(0, count).join(' ').trim();
 }
 
+type Params = Promise<{ slug: string }>;
+
 export async function generateMetadata(
-  { params }: { params: { slug: string } }
+  { params }: { params: Params }
 ): Promise<Metadata> {
-  const story = await getStoryBySlug(params.slug);
+  const { slug } = await params;
+  const story = await getStoryBySlug(slug);
 
   if (!story) {
     return {
@@ -35,8 +38,8 @@ export async function generateMetadata(
 }
 
 
-export default async function StoryPage({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug} = await params;
+export default async function StoryPage({ params }: { params: Params }) {
+  const { slug }  = await params;
     const story = await getStoryBySlug(slug);
 
     if (!story) return notFound(); 
