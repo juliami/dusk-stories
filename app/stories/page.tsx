@@ -2,7 +2,7 @@ import { getStories } from '@/contentful/fetch';
 import Storycard from '@/components/Storycard';
 import Search from '@/components/Search';
 
-export default async function StoriesPage({ searchParams }: { searchParams: { query?: string } }) {
+export default async function StoriesPage({ searchParams }: { searchParams: Promise<{ query?: string }> }) {
   const {query} = await searchParams;
   const stories = await getStories(query || '');
 
