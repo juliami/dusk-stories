@@ -5,8 +5,8 @@ export async function getPosts() {
   const entries = await client.getEntries({ content_type: 'post' })
   return entries.items
 }
-export async function getStories() {
-  const entries = await client.getEntries<TypeStorySkeleton>({ content_type: 'story' })
+export async function getStories(query?: string) {
+  const entries = await client.getEntries<TypeStorySkeleton>({ content_type: 'story', query })
   return entries.items
 }
 
