@@ -5,11 +5,11 @@
   --color-background: #0b0c10;           
   --color-surface: #1f1f1f;              
   --color-foreground: #f2f2f2;           
-  --color-text-primary: rgb(242, 242, 242);         
+  --color-text-primary: #e7e9ed;         
   --color-text-secondary: #bbbbbb;   
   --color-text-muted: rgba(242, 242, 242, 0.4);
   --color-overlay: rgba(230, 57, 70, 0.2);
-  --color-accent: #e63946;              
+  --color-accent: #ed5565;              
   --color-border: #333;                 
 
   --color-rating: #ffcc00;              

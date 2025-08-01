@@ -27,21 +27,21 @@ const Search = () => {
         e.preventDefault();
         handleSearch();
       }}
-      className="flex items-center gap-2 w-full py-8"
+      className="flex items-center gap-2 w-full mb-4"
     >
       <input
         name="query"
         type="text"
-        placeholder="Search stories…"
+        placeholder="Szukaj opowiadania…"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         className="w-full px-4 py-2 rounded-md bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] placeholder-[var(--color-text-secondary)]"
       />
       <button
         type="submit"
-        className="px-4 py-2 bg-[var(--color-accent)] text-white rounded-md hover:bg-[var(--color-overlay)] transition-colors duration-200"
+        className="px-4 py-2 bg-[var(--color-accent)] text-white rounded-md hover:bg-[var(--color-overlay)] transition-colors duration-200 cursor-pointer"
       >
-        Search
+        Szukaj
       </button>
     </form>
   );

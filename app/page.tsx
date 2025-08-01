@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function HomePage() {
   return (
-    <div className="max-w-xl text-center space-y-6">
+    <div className="w-full text-center space-y-6 flex justify-center items-center flex-col grow">
       <h1 className="text-4xl font-bold tracking-tight">
         Nie czytać o zmierzchu
       </h1>

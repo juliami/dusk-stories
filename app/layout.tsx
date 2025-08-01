@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+import Head from "next/head";
+
 export const metadata: Metadata = {
   title: "Nie czytać o zmierzchu"
 };
@@ -12,13 +14,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      </head>
+      <Head>
+        <title>Short Horror Stories</title>
+      </Head>
       <body
         className="justify-center"
       >
-     <main className="text-[var(--color-text-primary)] w-full flex items-center justify-center
+     <main className="max-w-4xl mx-auto text-[var(--color-text-primary)] w-full flex flex-col
  min-h-screen px-4">
         {children}
     </main>
