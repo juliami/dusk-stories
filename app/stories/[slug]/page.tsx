@@ -4,7 +4,6 @@ import { documentToPlainTextString } from '@contentful/rich-text-plain-text-rend
 import { getStoryBySlug } from '@/contentful/fetch'
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Head from 'next/head';
 import type { Metadata } from "next";
 import Header from '@/components/Header';
 
