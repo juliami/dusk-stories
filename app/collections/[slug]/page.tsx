@@ -1,18 +1,10 @@
 
 
-import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
 import { getCollectionBySlug } from '@/contentful/fetch'
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
 import Header from '@/components/Header';
-
-
-function getFirstSentences(text: string, count: number = 2): string {
-  const sentences = text.match(/[^.!?]+[.!?]+/g);
-  if (!sentences) return text;
-  return sentences.slice(0, count).join(' ').trim();
-}
 
 type Params = Promise<{ slug: string }>;
 
