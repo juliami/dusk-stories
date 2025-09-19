@@ -1,5 +1,5 @@
 import {client} from './client';
-import {TypeStorySkeleton } from './types';
+import {TypeStorySkeleton, TypeCollectionSkeleton } from './types';
 
 export async function getPosts() {
   const entries = await client.getEntries({ content_type: 'post' })
@@ -26,5 +26,10 @@ export async function getAllStorySlugs(): Promise<string[]> {
     select: ['fields.slug'],
   });
 
-  return entries.items.map((item) => item.fields.slug);
+  return entries.items.map((item) => item.fields.slug || '');
+}
+
+export async function getCollections(query?: string) {
+  const entries = await client.getEntries<TypeCollectionSkeleton>({ content_type: 'collection', query })
+  return entries.items
 }

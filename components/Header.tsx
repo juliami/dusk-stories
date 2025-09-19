@@ -16,6 +16,7 @@ const Header = () => (<header className="flex w-full items-center gap-4 py-4 mb-
       </h2>
     </div>
   </Link>
+  
 </header>)
 
 export default Header;

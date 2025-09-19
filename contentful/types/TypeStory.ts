@@ -1,4 +1,5 @@
 import type { ChainModifiers, Entry, EntryFieldTypes, EntrySkeletonType, LocaleCode } from "contentful";
+import type { TypeCollectionSkeleton } from "./TypeCollection";
 
 export interface TypeStoryFields {
     title: EntryFieldTypes.Symbol;
@@ -6,7 +7,9 @@ export interface TypeStoryFields {
     publicationYear?: EntryFieldTypes.Integer;
     synopsis?: EntryFieldTypes.RichText;
     rating?: EntryFieldTypes.Integer;
-    slug: EntryFieldTypes.Symbol
+    slug?: EntryFieldTypes.Symbol;
+    polish_title?: EntryFieldTypes.Symbol;
+    collection?: EntryFieldTypes.Array<EntryFieldTypes.EntryLink<TypeCollectionSkeleton>>;
 }
 
 export type TypeStorySkeleton = EntrySkeletonType<TypeStoryFields, "story">;
