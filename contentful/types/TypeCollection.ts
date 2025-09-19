@@ -5,6 +5,7 @@ export interface TypeCollectionFields {
     publishingHouse?: EntryFieldTypes.Symbol;
     year?: EntryFieldTypes.Integer;
     cover?: EntryFieldTypes.AssetLink;
+    slug?: EntryFieldTypes.Symbol;
 }
 
 export type TypeCollectionSkeleton = EntrySkeletonType<TypeCollectionFields, "collection">;

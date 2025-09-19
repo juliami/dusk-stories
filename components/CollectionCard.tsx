@@ -16,7 +16,7 @@ export default function CollectionCard({
 
     return (
         <Link
-            href={`/stories/${slug}`}
+            href={`/collections/${slug}`}
             className="group block px-4 py-3 border-b border-[var(--color-border)] hover:bg-[var(--color-overlay)] transition-colors duration-200 group text-sm text-[var(--color-text-primary)]"
         >
             <div className="grid grid-cols-[180px_1fr_80px_100px] gap-4 items-start">

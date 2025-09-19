@@ -33,3 +33,12 @@ export async function getCollections(query?: string) {
   const entries = await client.getEntries<TypeCollectionSkeleton>({ content_type: 'collection', query })
   return entries.items
 }
+export async function getCollectionBySlug(slug: string) {
+  const entries = await client.getEntries<TypeCollectionSkeleton>({
+    content_type: 'collection',
+    'fields.slug': slug,
+    limit: 1,
+  });
+
+  return entries.items[0]?.fields ?? null;
+}

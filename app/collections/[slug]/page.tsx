@@ -1,7 +1,7 @@
 
 
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
-import { getStoryBySlug } from '@/contentful/fetch'
+import { getCollectionBySlug } from '@/contentful/fetch'
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
@@ -20,32 +20,29 @@ export async function generateMetadata(
   { params }: { params: Params }
 ): Promise<Metadata> {
   const { slug } = await params;
-  const story = await getStoryBySlug(slug);
+  const collection = await getCollectionBySlug(slug);
 
-  if (!story) {
+  if (!collection) {
     return {
-      title: 'Nie znaleziono opowiadania – Nie czytać o zmierzchu',
+      title: 'Nie znaleziono zbioru – Nie czytać o zmierzchu',
     };
   }
-  const storySynopsis = story.synopsis ? documentToPlainTextString(story.synopsis) : '';
 
   return {
-    title: `${story.title} – Nie czytać o zmierzchu`,
-    description: `${getFirstSentences(storySynopsis, 2)}`
-
+    title: `${collection.title} – Nie czytać o zmierzchu`,
+    description: `${collection.publishingHouse} - ${collection.publishingHouse}`
 
   }
 }
 
 
-export default async function StoryPage({ params }: { params: Params }) {
+export default async function CollectionPage({ params }: { params: Params }) {
   const { slug } = await params;
-  const story = await getStoryBySlug(slug);
+  const collection = await getCollectionBySlug(slug);
 
-  if (!story) return notFound();
+  if (!collection) return notFound();
 
 
-  const storySynopsis = story.synopsis ? documentToPlainTextString(story.synopsis) : '';
   return (
     <>
   
@@ -58,19 +55,12 @@ export default async function StoryPage({ params }: { params: Params }) {
           </Link>
         </nav>
 
-        <h1 className="text-3xl font-bold tracking-tight">{story.title}</h1>
+        <h1 className="text-3xl font-bold tracking-tight">{collection.title}</h1>
 
         <p className="text-[var(--color-text-secondary)] mt-2 italic">
-          {story.author && `✍️ ${story.author}`} {story.publicationYear && `· 🕯️ ${story.publicationYear}`}
+          {collection.publishingHouse && `${collection.publishingHouse}`} {collection.year && `· ${collection.year}`}
         </p>
 
-        {story.rating !== undefined && (
-          <p className="mt-2 text-yellow-500">⭐ Ocena: {story.rating}/5</p>
-        )}
-
-        <article className="prose prose-invert prose-sm md:prose-base leading-relaxed">
-          {storySynopsis}
-        </article>
       </section>
     </>
   )

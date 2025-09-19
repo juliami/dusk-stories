@@ -342,7 +342,7 @@
         "id": "collection",
         "type": "ContentType",
         "createdAt": "2025-09-19T09:36:51.236Z",
-        "updatedAt": "2025-09-19T09:36:51.574Z",
+        "updatedAt": "2025-09-19T10:31:24.802Z",
         "environment": {
           "sys": {
             "id": "master",
@@ -350,8 +350,8 @@
             "linkType": "Environment"
           }
         },
-        "publishedVersion": 1,
-        "publishedAt": "2025-09-19T09:36:51.574Z",
+        "publishedVersion": 3,
+        "publishedAt": "2025-09-19T10:31:24.802Z",
         "firstPublishedAt": "2025-09-19T09:36:51.574Z",
         "createdBy": {
           "sys": {
@@ -367,8 +367,8 @@
             "id": "5Z647xSkF3lG4rhgfwvUXp"
           }
         },
-        "publishedCounter": 1,
-        "version": 2,
+        "publishedCounter": 2,
+        "version": 4,
         "publishedBy": {
           "sys": {
             "type": "Link",
@@ -426,6 +426,17 @@
           "disabled": false,
           "omitted": false,
           "linkType": "Asset"
+        },
+        {
+          "id": "slug",
+          "name": "slug",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
         }
       ]
     }
