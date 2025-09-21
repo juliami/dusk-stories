@@ -1,8 +1,9 @@
 import Link from 'next/link';
+import { EntryFields } from 'contentful';
 
-type CollectionCardProps = {
-    title?: string;
-    year?: number;
+export type CollectionCardProps = {
+    title?: EntryFields.Symbol<string>;
+    year?: EntryFields.Integer<number>;
     publishingHouse?: string;
     slug?: string;
 };

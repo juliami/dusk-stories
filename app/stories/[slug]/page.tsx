@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
 import Header from '@/components/Header';
+import CollectionCard from '@/components/CollectionCard';
+import type {  TypeCollectionFields, TypeCollectionSkeleton } from "@/contentful/types/TypeCollection";
 
 
 function getFirstSentences(text: string, count: number = 2): string {
@@ -32,10 +34,23 @@ export async function generateMetadata(
   return {
     title: `${story.title} – Nie czytać o zmierzchu`,
     description: `${getFirstSentences(storySynopsis, 2)}`
-
-
   }
 }
+
+const StoryCollectionsList = ({collections}: {collections?: TypeCollectionFields[]}) => {
+if (!collections) {
+  return null;
+}
+return ( 
+  <>
+  <h2 className='text-xl font-bold tracking-tight mb-2'>Zbiory</h2>
+    {collections?.map((collection) => <CollectionCard key={collection.slug?.toString()}  {...collection} />)}
+  </>
+)
+  
+}
+
+  
 
 
 export default async function StoryPage({ params }: { params: Params }) {
@@ -46,6 +61,8 @@ export default async function StoryPage({ params }: { params: Params }) {
 
 
   const storySynopsis = story.synopsis ? documentToPlainTextString(story.synopsis) : '';
+  const collections = story.collection?.map(collection => collection.fields);
+
   return (
     <>
   
@@ -68,9 +85,10 @@ export default async function StoryPage({ params }: { params: Params }) {
           <p className="mt-2 text-yellow-500">⭐ Ocena: {story.rating}/5</p>
         )}
 
-        <article className="prose prose-invert prose-sm md:prose-base leading-relaxed">
+        <article className="prose prose-invert prose-sm md:prose-base leading-relaxed mb-4">
           {storySynopsis}
-        </article>
+        </article>  
+        <StoryCollectionsList collections={collections}/>
       </section>
     </>
   )

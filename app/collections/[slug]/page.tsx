@@ -31,7 +31,6 @@ export async function generateMetadata(
 export default async function CollectionPage({ params }: { params: Params }) {
   const { slug } = await params;
   const collection = await getCollectionBySlug(slug);
-
   if (!collection) return notFound();
 
 
