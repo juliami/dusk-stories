@@ -1,5 +1,5 @@
 import { getCollections } from '@/contentful/fetch';
-import CollectionCard from '@/components/CollectionCard';
+import CollectionCard from '@/components/CollectionListItem';
 import Header from '@/components/Header';
 
 export default async function CollectionsPage() {

@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
 import Header from '@/components/Header';
-import CollectionCard from '@/components/CollectionCard';
+import CollectionListItem from '@/components/CollectionListItem';
 import type {  TypeCollectionFields, TypeCollectionSkeleton } from "@/contentful/types/TypeCollection";
 
 
@@ -44,13 +44,12 @@ if (!collections) {
 return ( 
   <>
   <h2 className='text-xl font-bold tracking-tight mb-2'>Zbiory</h2>
-    {collections?.map((collection) => <CollectionCard key={collection.slug?.toString()}  {...collection} />)}
+    {collections?.map((collection) => <CollectionListItem key={collection.slug?.toString()}  {...collection} />)}
   </>
 )
   
 }
 
-  
 
 
 export default async function StoryPage({ params }: { params: Params }) {

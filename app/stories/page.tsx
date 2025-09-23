@@ -1,5 +1,5 @@
 import { getStories } from '@/contentful/fetch';
-import Storycard from '@/components/Storycard';
+import StoryListItem from '@/components/StoryListItem';
 import Search from '@/components/Search';
 import Header from '@/components/Header';
 
@@ -14,7 +14,7 @@ export default async function StoriesPage({ searchParams }: { searchParams: Prom
       <Search />
       <div className="space-y-4">
         {stories.map((story) => (
-          <Storycard key={story.sys.id} {...story.fields} />
+          <StoryListItem key={story.sys.id} {...story.fields} />
         ))}
       </div>
     </section>

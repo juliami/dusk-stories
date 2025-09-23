@@ -1,7 +1,7 @@
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
 import Link from 'next/link';
 
-type StoryCardProps = {
+type StoryListItemProps = {
     title: string;
     author?: string;
     publicationYear?: number;
@@ -11,17 +11,16 @@ type StoryCardProps = {
     slug?: string;
 };
 
-export default function StoryCard({
+export default function StoryListItem({
     title,
     author,
     publicationYear,
     rating,
     synopsis,
     slug,
-}: StoryCardProps) {
+}: StoryListItemProps) {
     const plainText = synopsis ? documentToPlainTextString(synopsis) : '';
     const shortSynopsis = plainText.length > 250 ? plainText.slice(0, 250) + '…' : plainText;
-
     return (
         <Link
             href={`/stories/${slug}`}
@@ -32,9 +31,7 @@ export default function StoryCard({
                     {author || '—'}
                 </div>
                 <div className="font-medium text-[var(--color-accent)] group-hover:underline">
-
                     {title}
-
                 </div>
 
                 <div className="text-[var(--color-text-secondary)] self-center text-center">

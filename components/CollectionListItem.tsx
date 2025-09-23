@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { EntryFields } from 'contentful';
 
-export type CollectionCardProps = {
+export type CollectionListItemProps = {
     title?: EntryFields.Symbol<string>;
     year?: EntryFields.Integer<number>;
     publishingHouse?: string;
@@ -13,7 +13,7 @@ export default function CollectionCard({
     publishingHouse,
     year,
     slug
-}: CollectionCardProps) {
+}: CollectionListItemProps) {
 
     return (
         <Link
