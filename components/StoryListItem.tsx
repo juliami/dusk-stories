@@ -30,9 +30,9 @@ export default function StoryListItem({
                 <div className="self-center font-bold">
                     {author || '—'}
                 </div>
-                <div className="font-medium text-[var(--color-accent)] group-hover:underline">
+                <h3 className="font-medium text-[var(--color-accent)] group-hover:underline">
                     {title}
-                </div>
+                </h3>
 
                 <div className="text-[var(--color-text-secondary)] self-center text-center">
                     {publicationYear || '—'}
