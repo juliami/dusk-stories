@@ -41,9 +41,11 @@ const StoryCollectionsList = ({collections}: {collections?: TypeCollectionFields
 if (!collections) {
   return null;
 }
+
 return ( 
   <>
   <h2 className='text-xl font-bold tracking-tight mb-2'>Zbiory</h2>
+    {/* @ts-ignore */}
     {collections?.map((collection) => <CollectionListItem key={collection.slug?.toString()}  {...collection} />)}
   </>
 )
@@ -60,6 +62,7 @@ export default async function StoryPage({ params }: { params: Params }) {
 
 
   const storySynopsis = story.synopsis ? documentToPlainTextString(story.synopsis) : '';
+  // @ts-ignore
   const collections = story.collection?.map(collection => collection.fields);
 
   return (
