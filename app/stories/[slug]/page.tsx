@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
 import Header from '@/components/Header';
 import CollectionListItem from '@/components/CollectionListItem';
-import type {  TypeCollectionFields, TypeCollectionSkeleton } from "@/contentful/types/TypeCollection";
+import type {  TypeCollectionFields } from "@/contentful/types/TypeCollection";
 
 
 function getFirstSentences(text: string, count: number = 2): string {
