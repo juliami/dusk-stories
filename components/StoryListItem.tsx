@@ -23,11 +23,9 @@ export default function StoryListItem({
         <h3 className='font-medium text-[var(--color-accent)] group-hover:underline'>
           {title}
         </h3>
-
         <div className='self-center text-center text-[var(--color-text-secondary)]'>
           {year || '—'}
         </div>
-
         <div className='self-center text-center font-semibold text-yellow-500'>
           {rating !== undefined ? `${rating}/5` : '—'}
         </div>
