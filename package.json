@@ -16,9 +16,8 @@
     "lint-staged": "lint-staged"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,css}": [
-      "tsc",
-      "eslint --fix src/"
+    "app/**/*.{js,jsx,ts,tsx,json,css}": [
+      "prettier . --check"
     ]
   },
   "dependencies": {
