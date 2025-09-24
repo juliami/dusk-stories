@@ -1,5 +1,6 @@
 import {client} from './client';
 import {TypeStorySkeleton, TypeCollectionSkeleton } from './types';
+import { normalizeCollection, normalizeStory, isDefined} from './utils';
 
 export async function getPosts() {
   const entries = await client.getEntries({ content_type: 'post' })
@@ -7,7 +8,7 @@ export async function getPosts() {
 }
 export async function getStories(query?: string) {
   const entries = await client.getEntries<TypeStorySkeleton>({ content_type: 'story', query })
-  return entries.items
+  return entries.items.map(item => normalizeStory(item));
 }
 
 export async function getStoryBySlug(slug: string) {
@@ -16,8 +17,8 @@ export async function getStoryBySlug(slug: string) {
     'fields.slug': slug,
     limit: 1,
   });
-
-  return entries.items[0]?.fields ?? null;
+  
+  return normalizeStory(entries.items[0]) ?? null;
 }
 
 export async function getAllStorySlugs(): Promise<string[]> {
@@ -31,7 +32,7 @@ export async function getAllStorySlugs(): Promise<string[]> {
 
 export async function getCollections(query?: string) {
   const entries = await client.getEntries<TypeCollectionSkeleton>({ content_type: 'collection', query })
-  return entries.items
+  return entries.items.map(item => normalizeCollection(item)).filter(isDefined)
 }
 export async function getCollectionBySlug(slug: string) {
   const entries = await client.getEntries<TypeCollectionSkeleton>({
@@ -40,5 +41,5 @@ export async function getCollectionBySlug(slug: string) {
     limit: 1,
   });
 
-  return entries.items[0]?.fields ?? null;
+  return normalizeCollection(entries.items[0]) ?? null;
 }

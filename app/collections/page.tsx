@@ -1,6 +1,8 @@
-import { getCollections } from '@/contentful/fetch';
-import CollectionCard from '@/components/CollectionListItem';
+import { getCollections } from '@/lib/contentful/fetch';
+import CollectionListItem from '@/components/CollectionListItem';
 import Header from '@/components/Header';
+
+
 
 export default async function CollectionsPage() {
   const collections = await getCollections();
@@ -11,7 +13,7 @@ export default async function CollectionsPage() {
     <section className="mx-auto w-full">
       <div className="space-y-4">
         {collections.map((collection) => (
-          <CollectionCard key={collection.sys.id} {...collection.fields} />
+          <CollectionListItem key={collection.id} {...collection} />
         ))}
       </div>
     </section>

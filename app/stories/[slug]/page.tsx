@@ -1,13 +1,12 @@
 
 
-import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
-import { getStoryBySlug } from '@/contentful/fetch'
+import { getStoryBySlug } from '@/lib/contentful/fetch'
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from "next";
 import Header from '@/components/Header';
 import CollectionListItem from '@/components/CollectionListItem';
-import type {  TypeCollectionFields } from "@/contentful/types/TypeCollection";
+import { Collection } from '@/lib/types';
 
 
 function getFirstSentences(text: string, count: number = 2): string {
@@ -29,7 +28,7 @@ export async function generateMetadata(
       title: 'Nie znaleziono opowiadania – Nie czytać o zmierzchu',
     };
   }
-  const storySynopsis = story.synopsis ? documentToPlainTextString(story.synopsis) : '';
+  const storySynopsis = story.synopsis ?? '';
 
   return {
     title: `${story.title} – Nie czytać o zmierzchu`,
@@ -37,16 +36,12 @@ export async function generateMetadata(
   }
 }
 
-const StoryCollectionsList = ({collections}: {collections?: TypeCollectionFields[]}) => {
-if (!collections) {
-  return null;
-}
+const StoryCollectionsList = ({collections}: {collections: Collection[]}) => {
 
 return ( 
   <>
   <h2 className='text-xl font-bold tracking-tight mb-2'>Zbiory</h2>
-    {/* @ts-ignore */}
-    {collections?.map((collection) => <CollectionListItem key={collection.slug?.toString()}  {...collection} />)}
+    {collections?.map((collection) => <CollectionListItem key={collection.id}  {...collection} />)}
   </>
 )
   
@@ -59,11 +54,6 @@ export default async function StoryPage({ params }: { params: Params }) {
   const story = await getStoryBySlug(slug);
 
   if (!story) return notFound();
-
-
-  const storySynopsis = story.synopsis ? documentToPlainTextString(story.synopsis) : '';
-  // @ts-ignore
-  const collections = story.collection?.map(collection => collection.fields);
 
   return (
     <>
@@ -80,7 +70,7 @@ export default async function StoryPage({ params }: { params: Params }) {
         <h1 className="text-3xl font-bold tracking-tight">{story.title}</h1>
 
         <p className="text-[var(--color-text-secondary)] mt-2 italic">
-          {story.author && `✍️ ${story.author}`} {story.publicationYear && `· 🕯️ ${story.publicationYear}`}
+          {story.author && `✍️ ${story.author}`} {story.year && `· 🕯️ ${story.year}`}
         </p>
 
         {story.rating !== undefined && (
@@ -88,9 +78,9 @@ export default async function StoryPage({ params }: { params: Params }) {
         )}
 
         <article className="prose prose-invert prose-sm md:prose-base leading-relaxed mb-4">
-          {storySynopsis}
+          {story.synopsis}
         </article>  
-        <StoryCollectionsList collections={collections}/>
+        { story.collections && <StoryCollectionsList collections={story.collections}/>}
       </section>
     </>
   )

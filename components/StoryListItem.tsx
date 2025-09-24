@@ -1,26 +1,20 @@
-import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
+import { Story } from '@/lib/types';
 import Link from 'next/link';
 
-type StoryListItemProps = {
-    title: string;
-    author?: string;
-    publicationYear?: number;
-    rating?: number;
-    /* eslint-disable-next-line  @typescript-eslint/no-explicit-any */
-    synopsis?: any; // rich text JSON
-    slug?: string;
-};
+
 
 export default function StoryListItem({
     title,
     author,
-    publicationYear,
+    year,
     rating,
     synopsis,
     slug,
-}: StoryListItemProps) {
-    const plainText = synopsis ? documentToPlainTextString(synopsis) : '';
+}: Story) {
+    
+    const plainText = synopsis ?? '';
     const shortSynopsis = plainText.length > 250 ? plainText.slice(0, 250) + '…' : plainText;
+    
     return (
         <Link
             href={`/stories/${slug}`}
@@ -35,7 +29,7 @@ export default function StoryListItem({
                 </h3>
 
                 <div className="text-[var(--color-text-secondary)] self-center text-center">
-                    {publicationYear || '—'}
+                    {year || '—'}
                 </div>
 
                 <div className="text-yellow-500 font-semibold self-center text-center">

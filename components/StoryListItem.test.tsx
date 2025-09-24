@@ -1,15 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import StoryListItem from './StoryListItem';
-import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
-
-// Mock Contentful function
-jest.mock('@contentful/rich-text-plain-text-renderer', () => ({
-  documentToPlainTextString: jest.fn((doc) => doc?.content?.[0]?.value || ''),
-}));
 
 describe('StoryListItem', () => {
   const defaultProps = {
+    id: 'xyz',
     title: 'Lies and Lilies',
     author: 'Bram Stoker',
     publicationYear: 1881,
@@ -39,7 +34,7 @@ describe('StoryListItem', () => {
   });
 
   it('renders a dash if optional props are missing', () => {
-    render(<StoryListItem title="No Extras" />);
+    render(<StoryListItem id="aa" title="No Extras" />);
     const dashes = screen.getAllByText('—');
     expect(dashes).toHaveLength(3);
   });
@@ -51,18 +46,14 @@ describe('StoryListItem', () => {
   });
 
   it('renders the synopsis (short text)', () => {
-    const synopsis = { content: [{ value: 'This is a short synopsis.' }] };
-    (documentToPlainTextString as jest.Mock).mockReturnValue('This is a short synopsis.');
+    const synopsis = 'This is a short synopsis.';
 
     render(<StoryListItem {...defaultProps} synopsis={synopsis} />);
     expect(screen.getByText('This is a short synopsis.')).toBeInTheDocument();
   });
 
   it('truncates long synopsis', () => {
-    const longText = 'a'.repeat(300);
-    const synopsis = { content: [{ value: longText }] };
-    (documentToPlainTextString as jest.Mock).mockReturnValue(longText);
-
+    const synopsis = 'a'.repeat(300);
     render(<StoryListItem {...defaultProps} synopsis={synopsis} />);
     const displayed = screen.getByText(/…$/); // ends with ellipsis
     expect(displayed.textContent?.length).toBe(251); // 250 chars + …
