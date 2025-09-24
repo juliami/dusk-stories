@@ -27,19 +27,19 @@ const Search = () => {
         e.preventDefault();
         handleSearch();
       }}
-      className="flex items-center gap-2 w-full mb-4"
+      className='mb-4 flex w-full items-center gap-2'
     >
       <input
-        name="query"
-        type="text"
-        placeholder="Szukaj opowiadania…"
+        name='query'
+        type='text'
+        placeholder='Szukaj opowiadania…'
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="w-full px-4 py-2 rounded-md bg-[var(--color-surface)] text-[var(--color-text-primary)] border border-[var(--color-border)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] placeholder-[var(--color-text-secondary)]"
+        className='w-full rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2 text-[var(--color-text-primary)] placeholder-[var(--color-text-secondary)] focus:ring-2 focus:ring-[var(--color-accent)] focus:outline-none'
       />
       <button
-        type="submit"
-        className="px-4 py-2 bg-[var(--color-accent)] text-white rounded-md hover:bg-[var(--color-overlay)] transition-colors duration-200 cursor-pointer"
+        type='submit'
+        className='cursor-pointer rounded-md bg-[var(--color-accent)] px-4 py-2 text-white transition-colors duration-200 hover:bg-[var(--color-overlay)]'
       >
         Szukaj
       </button>

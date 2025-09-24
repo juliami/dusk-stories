@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
-import "./globals.css";
+import type { Metadata } from 'next';
+import './globals.css';
 
-import Head from "next/head";
+import Head from 'next/head';
 
 export const metadata: Metadata = {
-  title: "Nie czytać o zmierzchu"
+  title: 'Nie czytać o zmierzchu',
 };
 
 export default function RootLayout({
@@ -13,17 +13,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang='en'>
       <Head>
         <title>Short Horror Stories</title>
       </Head>
-      <body
-        className="justify-center"
-      >
-     <main className="max-w-4xl mx-auto text-[var(--color-text-primary)] w-full flex flex-col
- min-h-screen px-4">
-        {children}
-    </main>
+      <body className='justify-center'>
+        <main className='mx-auto flex min-h-screen w-full max-w-4xl flex-col px-4 text-[var(--color-text-primary)]'>
+          {children}
+        </main>
       </body>
     </html>
   );

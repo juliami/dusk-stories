@@ -1,18 +1,18 @@
 export interface Collection {
-  id: string,
-  title: string,
-  slug: string,
-  publishingHouse?: string,
+  id: string;
+  title: string;
+  slug: string;
+  publishingHouse?: string;
   year?: number;
 }
 
 export interface Story {
-  id: string,
+  id: string;
   title: string;
-  author?: string; 
+  author?: string;
   year?: number;
   rating?: number;
   synopsis?: string;
   slug?: string;
-  collections?: Collection[]
+  collections?: Collection[];
 }

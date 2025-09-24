@@ -25,7 +25,9 @@ describe('StoryListItem', () => {
 
   it('renders the publication year', () => {
     render(<StoryListItem {...defaultProps} />);
-    expect(screen.getByText(defaultProps.publicationYear.toString())).toBeInTheDocument();
+    expect(
+      screen.getByText(defaultProps.publicationYear.toString()),
+    ).toBeInTheDocument();
   });
 
   it('renders the rating', () => {
@@ -34,7 +36,7 @@ describe('StoryListItem', () => {
   });
 
   it('renders a dash if optional props are missing', () => {
-    render(<StoryListItem id="aa" title="No Extras" />);
+    render(<StoryListItem id='aa' title='No Extras' />);
     const dashes = screen.getAllByText('—');
     expect(dashes).toHaveLength(3);
   });

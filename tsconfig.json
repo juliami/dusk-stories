@@ -22,6 +22,13 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/StoryListItem.test.jsx", "components/StoryListItem.test.jsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "components/StoryListItem.test.jsx",
+    "components/StoryListItem.test.jsx"
+  ],
   "exclude": ["node_modules"]
 }
